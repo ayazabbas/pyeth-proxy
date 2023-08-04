@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   pyeth-proxy:
-    image: 858463413507.dkr.ecr.eu-west-2.amazonaws.com/pyeth-proxy:latest
+    image: ${IMAGE_TAG}
     container_name: pyeth-proxy
     ports:
       - "8000:8000"
