@@ -16,7 +16,6 @@ TIMEOUT_SECONDS = int(os.getenv("TIMEOUT_SECONDS", 5))
 # Error out if no rpc providers are defined
 if not RPC_PROVIDERS[0]:
     raise Exception("RPC_PROVIDERS not defined in environment")
-print(f"Using RPC_PROVIDERS: {RPC_PROVIDERS}")
 
 app = FastAPI()
 

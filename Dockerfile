@@ -21,4 +21,4 @@ RUN addgroup -g 1000 app && \
 
 USER 1000
 
-CMD /app/.venv/bin/uvicorn pyeth_proxy.main:app
+CMD /app/.venv/bin/uvicorn pyeth_proxy.main:app --host 0.0.0.0

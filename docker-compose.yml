@@ -9,3 +9,6 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
+    environment:
+      - RPC_PROVIDERS_HTTP=${RPC_PROVIDERS_HTTP}
+      - TIMEOUT_SECONDS=${TIMEOUT_SECONDS}
