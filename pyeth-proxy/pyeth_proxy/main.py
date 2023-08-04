@@ -4,7 +4,7 @@ from typing import Union
 
 import requests
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 
 # Load environment variables
@@ -20,18 +20,37 @@ if not RPC_PROVIDERS[0]:
 app = FastAPI()
 
 
-# Define request structure
 class JsonRpcBody(BaseModel):
+    """Model for request body"""
+
     jsonrpc: float
     method: str
     params: list
     id: Union[int, str] | None = None
 
 
+class HealthCheck(BaseModel):
+    """Response model to validate and return when performing a health check"""
+
+    status: str = "OK"
+
+
+@app.get(
+    "/health",
+    response_description="Return HTTP Status Code 200 (OK)",
+    status_code=status.HTTP_200_OK,
+    response_model=HealthCheck,
+)
+def get_health() -> HealthCheck:
+    """
+    Returns a JSON response with the health status
+    """
+    return HealthCheck(status="OK")
+
+
 @app.post("/")
 async def handle_request(json_rpc_body: JsonRpcBody):
     """
-    handle_request:
     Receives a post request expecting data in Ethereum json rpc format. Forwards the request to a node provider. If an
     error occurs, the request is retried with a different provider.
     """
