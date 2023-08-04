@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  pyeth-proxy:
+    image: 858463413507.dkr.ecr.eu-west-2.amazonaws.com/pyeth-proxy:latest
+    container_name: pyeth-proxy
+    ports:
+      - "8000:8000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
