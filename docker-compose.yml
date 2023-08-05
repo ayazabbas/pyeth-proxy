@@ -12,3 +12,6 @@ services:
     environment:
       - RPC_PROVIDERS_HTTP=${RPC_PROVIDERS_HTTP}
       - TIMEOUT_SECONDS=${TIMEOUT_SECONDS}
+      - LOKI_URL=${LOKI_URL}
+      - LOKI_USER=${LOKI_USER}
+      - LOKI_PASSWORD=${LOKI_PASSWORD}

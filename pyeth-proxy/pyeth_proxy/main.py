@@ -98,7 +98,7 @@ async def handle_request(json_rpc_body: JsonRpcBody, request: Request):
     """
 
     logger.info(
-        "Received request",
+        "Received request from user",
         extra={
             "tags": {
                 "body": f"'{json_rpc_body.model_dump_json()}'",

@@ -58,6 +58,9 @@ cat <<EOF > /etc/systemd/system/pyeth-proxy.service
   Environment=IMAGE_TAG=${ECR_URL}/pyeth-proxy:latest
   Environment=RPC_PROVIDERS_HTTP=${RPC_PROVIDERS_HTTP}
   Environment=TIMEOUT_SECONDS=${TIMEOUT_SECONDS}
+  Environment=LOKI_URL=${LOKI_URL}
+  Environment=LOKI_USER=${LOKI_USER}
+  Environment=LOKI_PASSWORD=${LOKI_PASSWORD}
   ExecStartPre=/bin/bash -c "aws ecr get-login-password --region ${ECR_REGION} | docker login --username AWS --password-stdin ${ECR_URL}"
   ExecStart=docker-compose up --abort-on-container-exit
 

@@ -25,6 +25,9 @@ locals {
       GITHUB_SSH_KEY     = replace(local.secrets["GITHUB_SSH_KEY"], "\\n", "\n")
       RPC_PROVIDERS_HTTP = local.secrets["RPC_PROVIDERS_HTTP"],
       TIMEOUT_SECONDS    = local.secrets["TIMEOUT_SECONDS"],
+      LOKI_URL           = local.secrets["LOKI_URL"],
+      LOKI_USER          = local.secrets["LOKI_USER"]
+      LOKI_PASSWORD      = local.secrets["LOKI_PASSWORD"]
     }
   ))
 }
