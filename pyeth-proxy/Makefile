@@ -6,4 +6,4 @@ lint:
 	poetry run isort pyeth_proxy/
 
 run:
-	poetry run uvicorn pyeth_proxy.main:app
+	poetry run uvicorn pyeth_proxy.main:app --proxy-headers
