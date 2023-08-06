@@ -85,7 +85,6 @@ curl --url localhost:8000 -X POST -H "Content-Type: application/json" -d '{"json
 - Multiple networks - add support for multiple evm networks.
 - API keys - will help us identify users' requests, so we can track-down issues more effectively. 
 - Rate-limiting - for DOS prevention (should be done at both the app-level and infrastructure-level).
-- Logging - we are not using any centralised logging at the moment, we can make use of Loki and Grafana to ingest and store logs.
 
 ### Infrastructure
 - Automated deployments - both Infrastructure provisioning, and updating the running version of the app are currently a manual process.
