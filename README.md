@@ -14,9 +14,9 @@ Send your Mainnet RPC requests to https://pyeth-proxy.ayazabbas.com
 ## Code
 - Everything interesting is happening in the [handle_request](https://github.com/ayazabbas/pyeth-proxy/blob/main/pyeth-proxy/pyeth_proxy/main.py#L94) function.
 - We receive the request from the user, in the same format they would normally send to an Ethereum node.
-- A random provider is chosen from the available providers.
+- The list of providers is shuffled for every new request, so requests should be equally balanced between them.
 - If the request succeeds, the response is sent to the user.
-- If the request fails, the provider that failed is removed from subsequent retries and the request is sent again to a random provider.
+- If the request fails, it is retried with the next provider in the list.
 - This is repeated until the request succeeds, or it errors against all providers.
 - If all providers fail, the error messages from all providers are included in the response to the user.
 
