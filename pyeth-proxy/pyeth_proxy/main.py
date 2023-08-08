@@ -107,14 +107,13 @@ async def handle_request(json_rpc_body: JsonRpcBody, request: Request):
         },
     )
 
-    # create a list of possible indexes of providers
-    indexes = list(range(len(RPC_PROVIDERS)))
     exceptions = []
-    while indexes:
+
+    # shuffle the list of providers so we don't always try the same one first
+    providers = RPC_PROVIDERS.copy()
+    random.shuffle(providers)
+    for url in providers:
         try:
-            # select a random provider to serve the request
-            index = random.choice(indexes)
-            url = RPC_PROVIDERS[index]
             response = requests.post(
                 url,
                 data=json_rpc_body.model_dump_json(),
@@ -134,8 +133,6 @@ async def handle_request(json_rpc_body: JsonRpcBody, request: Request):
             message = str(e)
             logger.error(f"Exception occurred: {message}")
             exceptions.append(message)
-            # drop the erroring provider for subsequent retries
-            indexes.remove(index)
 
     # return list of errors to user
     raise HTTPException(detail={"errors": exceptions}, status_code=400)
